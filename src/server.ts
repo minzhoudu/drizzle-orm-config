@@ -13,6 +13,15 @@ app.get("/users", async (req, res) => {
             with: {
                 posts: true,
                 comments: true,
+                groups: {
+                    columns: {
+                        groupID: false,
+                        userID: false,
+                    },
+                    with: {
+                        group: true,
+                    },
+                },
             },
         });
 

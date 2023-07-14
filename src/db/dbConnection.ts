@@ -1,8 +1,10 @@
 import { drizzle } from "drizzle-orm/mysql2";
 import mysql from "mysql2/promise";
 import * as posts from "./schema/posts";
-import * as users from "./schema/users";
 import * as comments from "./schema/comments";
+import * as users from "./schema/users";
+import * as groups from "./schema/groups";
+import * as usersToGroups from "./schema/usersToGroups";
 
 export const credentials = {
     host: "localhost",
@@ -19,5 +21,7 @@ export const db = drizzle(connection, {
         ...posts,
         ...users,
         ...comments,
+        ...usersToGroups,
+        ...groups,
     },
 });
