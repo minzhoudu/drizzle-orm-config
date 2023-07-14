@@ -8,9 +8,6 @@ export const users = mysqlTable("users", {
     username: varchar("username", { length: 255 }),
 });
 
-export const usersRelations = relations(users, ({ one }) => ({
-    post: one(posts, {
-        fields: [users.id],
-        references: [posts.authorID],
-    }),
+export const usersRelations = relations(users, ({ many }) => ({
+    posts: many(posts)
 }));
