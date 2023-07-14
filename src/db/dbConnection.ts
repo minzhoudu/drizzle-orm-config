@@ -1,7 +1,8 @@
 import { drizzle } from "drizzle-orm/mysql2";
 import mysql from "mysql2/promise";
-import * as schema1 from "./schema/posts";
-import * as schema2 from "./schema/users";
+import * as posts from "./schema/posts";
+import * as users from "./schema/users";
+import * as comments from "./schema/comments";
 
 export const credentials = {
     host: "localhost",
@@ -15,7 +16,8 @@ const connection = mysql.createPool(credentials);
 
 export const db = drizzle(connection, {
     schema: {
-        ...schema1,
-        ...schema2,
+        ...posts,
+        ...users,
+        ...comments,
     },
 });

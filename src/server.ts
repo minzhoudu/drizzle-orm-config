@@ -12,6 +12,7 @@ app.get("/users", async (req, res) => {
         const users = await db.query.users.findMany({
             with: {
                 posts: true,
+                comments: true,
             },
         });
 
@@ -46,7 +47,20 @@ app.get("/posts", async (req, res) => {
     try {
         const allPosts = await db.query.posts.findMany({
             with: {
-                author: true,
+                author: {
+                    columns: {
+                        username: true,
+                    },
+                },
+                comments: {
+                    columns: {
+                        content: true,
+                    },
+                },
+            },
+            columns: {
+                id: false,
+                authorID: false,
             },
         });
 

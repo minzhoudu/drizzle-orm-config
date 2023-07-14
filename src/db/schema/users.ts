@@ -2,6 +2,7 @@ import { relations } from "drizzle-orm";
 import { mysqlTable, varchar, text, serial, int } from "drizzle-orm/mysql-core";
 
 import { posts } from "./posts";
+import { comments } from "./comments";
 
 export const users = mysqlTable("users", {
     id: serial("id").primaryKey(),
@@ -9,5 +10,6 @@ export const users = mysqlTable("users", {
 });
 
 export const usersRelations = relations(users, ({ many }) => ({
-    posts: many(posts)
+    posts: many(posts),
+    comments: many(comments),
 }));
